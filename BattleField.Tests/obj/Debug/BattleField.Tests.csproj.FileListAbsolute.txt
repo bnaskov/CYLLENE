@@ -1,0 +1,7 @@
+D:\CYLLENE\BattleField.Tests\bin\Debug\BattleField.Tests.dll
+D:\CYLLENE\BattleField.Tests\bin\Debug\BattleField.Tests.pdb
+D:\CYLLENE\BattleField.Tests\obj\Debug\BattleField.Tests.csprojResolveAssemblyReference.cache
+D:\CYLLENE\BattleField.Tests\obj\Debug\BattleField.Tests.dll
+D:\CYLLENE\BattleField.Tests\obj\Debug\BattleField.Tests.pdb
+D:\CYLLENE\BattleField.Tests\bin\Debug\BattleField.exe
+D:\CYLLENE\BattleField.Tests\bin\Debug\BattleField.pdb
