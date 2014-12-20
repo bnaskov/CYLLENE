@@ -91,7 +91,8 @@ namespace BattleField
             {
                 if ((battleField[row - 1, column - 1] != "X") && (battleField[row - 1, column - 1] != "-"))
                 {
-                    killedNumbers++; battleField[row - 1, column - 1] = "X";
+                    killedNumbers++; 
+                    battleField[row - 1, column - 1] = "X";
                 }
             }
 
@@ -99,7 +100,8 @@ namespace BattleField
             {
                 if ((battleField[row + 1, column - 1] != "X") && (battleField[row + 1, column - 1] != "-"))
                 {
-                    killedNumbers++; battleField[row + 1, column - 1] = "X";
+                    killedNumbers++; 
+                    battleField[row + 1, column - 1] = "X";
                 }
             }
 
@@ -107,7 +109,8 @@ namespace BattleField
             {
                 if ((battleField[row - 1, column + 1] != "X") && (battleField[row - 1, column + 1] != "-"))
                 {
-                    killedNumbers++; battleField[row - 1, column + 1] = "X";
+                    killedNumbers++;
+                    battleField[row - 1, column + 1] = "X";
                 }
             }
 
@@ -115,7 +118,8 @@ namespace BattleField
             {
                 if ((battleField[row + 1, column + 1] != "X") && (battleField[row + 1, column + 1] != "-"))
                 {
-                    killedNumbers++; battleField[row + 1, column + 1] = "X";
+                    killedNumbers++; 
+                    battleField[row + 1, column + 1] = "X";
                 }
             }
         }
@@ -128,7 +132,8 @@ namespace BattleField
             {
                 if ((battleField[row - 1, column] != "X") && (battleField[row - 1, column] != "-"))
                 {
-                    killedNumbers++; battleField[row - 1, column] = "X";
+                    killedNumbers++; 
+                    battleField[row - 1, column] = "X";
                 }
             }
 
@@ -136,7 +141,8 @@ namespace BattleField
             {
                 if ((battleField[row, column - 1] != "X") && (battleField[row, column - 1] != "-"))
                 {
-                    killedNumbers++; battleField[row, column - 1] = "X";
+                    killedNumbers++; 
+                    battleField[row, column - 1] = "X";
                 }
             }
 
@@ -144,7 +150,8 @@ namespace BattleField
             {
                 if ((battleField[row, column + 1] != "X") && (battleField[row, column + 1] != "-"))
                 {
-                    killedNumbers++; battleField[row, column + 1] = "X";
+                    killedNumbers++; 
+                    battleField[row, column + 1] = "X";
                 }
             }
 
@@ -152,7 +159,8 @@ namespace BattleField
             {
                 if ((battleField[row + 1, column] != "X") && (battleField[row + 1, column] != "-"))
                 {
-                    killedNumbers++; battleField[row + 1, column] = "X";
+                    killedNumbers++; 
+                    battleField[row + 1, column] = "X";
                 }
             }
         }
@@ -165,7 +173,8 @@ namespace BattleField
             {
                 if ((battleField[row - 2, column] != "X") && (battleField[row - 2, column] != "-"))
                 {
-                    killedNumbers++; battleField[row - 2, column] = "X";
+                    killedNumbers++; 
+                    battleField[row - 2, column] = "X";
                 }
             }
 
@@ -173,7 +182,8 @@ namespace BattleField
             {
                 if ((battleField[row, column - 2] != "X") && (battleField[row, column - 2] != "-"))
                 {
-                    killedNumbers++; battleField[row, column - 2] = "X";
+                    killedNumbers++; 
+                    battleField[row, column - 2] = "X";
                 }
             }
 
@@ -181,7 +191,8 @@ namespace BattleField
             {
                 if ((battleField[row, column + 2] != "X") && (battleField[row, column + 2] != "-"))
                 {
-                    killedNumbers++; battleField[row, column + 2] = "X";
+                    killedNumbers++; 
+                    battleField[row, column + 2] = "X";
                 }
             }
 
@@ -189,7 +200,8 @@ namespace BattleField
             {
                 if ((battleField[row + 2, column] != "X") && (battleField[row + 2, column] != "-"))
                 {
-                    killedNumbers++; battleField[row + 2, column] = "X";
+                    killedNumbers++; 
+                    battleField[row + 2, column] = "X";
                 }
             }
 
