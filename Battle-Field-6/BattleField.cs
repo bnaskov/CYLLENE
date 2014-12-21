@@ -8,6 +8,59 @@ namespace BattleField
 {
     public class BattleField
     {
+        static void Main(string[] args)
+        {
+            BattleField bf = new BattleField();
+
+            bf.GameSession();
+        }
+
+        public void GameSession()
+        {
+            CreateBattleField();
+            FillInTheFields();
+            ViewTable();
+
+            while (!(Over()))
+            {
+                Console.Write("Please Enter Coordinates : ");
+
+                string inputRowAndColumn = Console.ReadLine();
+                string[] rowAndColumnSplit = inputRowAndColumn.Split(' ');
+                int row;
+                int column;
+
+                if ((rowAndColumnSplit.Length) <= 1)
+                {
+                    row = -1;
+                    column = -1;
+                }
+                else
+                {
+                    if (!(int.TryParse(rowAndColumnSplit[0], out row)))
+                    {
+                        row = -1;
+                    }
+                    if (!(int.TryParse(rowAndColumnSplit[1], out column)))
+                    {
+                        column = -1;
+                    }
+                }
+
+                if ((OutOfAreaCoordinates(row, column)))
+                {
+                    Console.WriteLine("This Move Is Out Of Area.");
+                }
+                else
+                {
+                    MineCell(row, column);
+                }
+            }
+
+            Console.WriteLine("Game Over. Detonated Mines {0}", izgyrmqniBombi);
+
+        }
+        
         public static Boolean isValidFieldSize(int inputNumber)
         {
             return ((inputNumber >= 1) && (inputNumber <= 10));
@@ -400,58 +453,6 @@ namespace BattleField
                 return false;
             }
             return true;
-        }
-
-        public void GameSession()
-        {
-            CreateBattleField();
-            FillInTheFields();
-            ViewTable();
-
-            while (!(Over()))
-            {
-                Console.Write("Please Enter Coordinates : ");
-
-                string inputRowAndColumn = Console.ReadLine();
-                string[] rowAndColumnSplit = inputRowAndColumn.Split(' ');
-                int row;
-                int column;
-
-                if ((rowAndColumnSplit.Length) <= 1) 
-                { 
-                    row = -1; 
-                    column = -1; 
-                }
-                else
-                {
-                    if (!(int.TryParse(rowAndColumnSplit[0], out row)))
-                    {
-                        row = -1;
-                    }
-                    if (!(int.TryParse(rowAndColumnSplit[1], out column)))
-                    {
-                        column = -1;
-                    }
-                }
-
-                if ((OutOfAreaCoordinates(row, column)))
-                {
-                    Console.WriteLine("This Move Is Out Of Area.");
-                }
-                else
-                {
-                    MineCell(row, column);
-                }
-            }
-
-            Console.WriteLine("Game Over. Detonated Mines {0}", izgyrmqniBombi);
-
-        }
-        static void Main(string[] args)
-        {
-            BattleField bf = new BattleField();
-
-            bf.GameSession();
-        }
+        }        
     }
 }
