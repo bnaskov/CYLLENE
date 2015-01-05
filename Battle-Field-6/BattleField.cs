@@ -8,7 +8,7 @@ namespace BattleField
 {
     public class BattleField
     {
-        static void Main(string[] args)
+        static void Main()
         {
             BattleField bf = new BattleField();
 
@@ -57,10 +57,10 @@ namespace BattleField
                 }
             }
 
-            Console.WriteLine("Game Over. Detonated Mines {0}", izgyrmqniBombi);
+            Console.WriteLine("Game Over. Detonated Mines {0}", detonatedMines);
 
         }
-        
+
         public static Boolean isValidFieldSize(int inputNumber)
         {
             return ((inputNumber >= 1) && (inputNumber <= 10));
@@ -73,9 +73,9 @@ namespace BattleField
             {
                 Console.Write("Please Enter Valid Size Of The Field. n=");
 
-                if (!(Int32.TryParse(Console.ReadLine(), out n))) 
-                { 
-                    n = -1; 
+                if (!(Int32.TryParse(Console.ReadLine(), out n)))
+                {
+                    n = -1;
                 }
             }
             while (!(isValidFieldSize(n)));
@@ -96,7 +96,7 @@ namespace BattleField
                 {
                     battleField[row, col] = "-";
                 }
-            }    
+            }
         }
 
         private static int RandomNumber(int min, int max)
@@ -121,13 +121,14 @@ namespace BattleField
                     battleField[row, column] = Convert.ToString(RandomNumber(1, 5));
                     countOfNumberedCells++;
 
-                    if (countOfNumberedCells >= 0.15 * n * n)
+                    if (countOfNumberedCells >= 0.15 * n * n) //TODO(kyamaliev): Randomize the number of mines!
                     {
+                        //(kyamaliev) - what is the purpose of the following code?
                         // originally was int stopFilling = RandomNumber(0, 1); , but in this case stopFilling can never be 1
                         int stopFilling = RandomNumber(0, 2);
-                        if (stopFilling == 1) 
-                        { 
-                            break; 
+                        if (stopFilling == 1)
+                        {
+                            break;
                         }
                     }
                 }
@@ -136,10 +137,10 @@ namespace BattleField
 
         public int killedNumbers = 0;
 
-        public void Bomb(int row, int column, int range)
+        public void Bomb(int row, int column, int range) //(kyamaliev)why is it called range?
         {
-            
-            battleField[row, column] = "X"; 
+
+            battleField[row, column] = "X";
             killedNumbers++;
             for (int i = row - range; i < row + range; i++)
             {
@@ -155,10 +156,10 @@ namespace BattleField
                     }
                 }
             }
-            
+
         }
 
-        
+
         public void InvalidMove()
         {
             Console.WriteLine("Invalid Move!");
@@ -168,16 +169,16 @@ namespace BattleField
         public void ViewTable()
         {
             Console.Write("   ");
-            for (int k = 0; k < n; k++) 
-            { 
-                Console.Write(k + " "); 
+            for (int k = 0; k < n; k++)
+            {
+                Console.Write(k + " ");
             }
 
             Console.WriteLine();
             Console.Write("   ");
-            for (int k = 0; k < n; k++) 
-            { 
-                Console.Write("--"); 
+            for (int k = 0; k < n; k++)
+            {
+                Console.Write("--");
             }
 
             Console.WriteLine();
@@ -195,7 +196,7 @@ namespace BattleField
             }
         }
 
-        public int izgyrmqniBombi = 0;
+        public int detonatedMines = 0;
 
         public void MineCell(int row, int column)
         {
@@ -209,10 +210,11 @@ namespace BattleField
             {
                 cellNumber = Convert.ToInt32(battleField[row, column]);
             }
-            if (cellNumber > 5 || cellNumber < 0) {
-                InvalidMove(); 
+            if (cellNumber > 5 || cellNumber < 0)
+            {
+                InvalidMove();
             }
-            Bomb(row, column, cellNumber); ViewTable(); izgyrmqniBombi++;
+            Bomb(row, column, cellNumber); ViewTable(); detonatedMines++;
         }
 
         public bool Over()
@@ -227,6 +229,6 @@ namespace BattleField
                 return false;
             }
             return true;
-        }        
+        }
     }
 }
