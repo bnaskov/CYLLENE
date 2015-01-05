@@ -83,8 +83,8 @@ namespace BattleField
             return n;
         }
 
-        string[,] battleField;
-        int n;
+        public string[,] battleField;
+        public int n;
 
         public void CreateBattleField()
         {
@@ -105,7 +105,7 @@ namespace BattleField
             return random.Next(min, max);
         }
 
-        int countOfNumberedCells = 0;
+        public int countOfNumberedCells = 0;
 
         public void FillInTheFields()
         {
@@ -134,250 +134,31 @@ namespace BattleField
             }
         }
 
-        int killedNumbers = 0;
+        public int killedNumbers = 0;
 
-        public void BombOne(int row, int column)
+        public void Bomb(int row, int column, int range)
         {
+            
             battleField[row, column] = "X"; 
             killedNumbers++;
-            if ((row - 1 >= 0) && (column - 1 >= 0))
+            for (int i = row - range; i < row + range; i++)
             {
-                if ((battleField[row - 1, column - 1] != "X") && (battleField[row - 1, column - 1] != "-"))
+                for (int j = column - range; j < column + range; j++)
                 {
-                    killedNumbers++; 
-                    battleField[row - 1, column - 1] = "X";
+                    if (!OutOfAreaCoordinates(i, j))
+                    {
+                        if ((battleField[i, j] != "X") && (battleField[i, j] != "-"))
+                        {
+                            killedNumbers++;
+                            battleField[i, j] = "X";
+                        }
+                    }
                 }
             }
-
-            if ((row + 1 <= n - 1) && (column - 1 >= 0))
-            {
-                if ((battleField[row + 1, column - 1] != "X") && (battleField[row + 1, column - 1] != "-"))
-                {
-                    killedNumbers++; 
-                    battleField[row + 1, column - 1] = "X";
-                }
-            }
-
-            if ((row - 1 >= 0) && (column + 1 <= n - 1))
-            {
-                if ((battleField[row - 1, column + 1] != "X") && (battleField[row - 1, column + 1] != "-"))
-                {
-                    killedNumbers++;
-                    battleField[row - 1, column + 1] = "X";
-                }
-            }
-
-            if ((row + 1 <= n - 1) && (column + 1 <= n - 1))
-            {
-                if ((battleField[row + 1, column + 1] != "X") && (battleField[row + 1, column + 1] != "-"))
-                {
-                    killedNumbers++; 
-                    battleField[row + 1, column + 1] = "X";
-                }
-            }
+            
         }
 
-        public void BombTwo(int row, int column)
-        {
-            BombOne(row, column);
-
-            if (row - 1 >= 0)
-            {
-                if ((battleField[row - 1, column] != "X") && (battleField[row - 1, column] != "-"))
-                {
-                    killedNumbers++; 
-                    battleField[row - 1, column] = "X";
-                }
-            }
-
-            if (column - 1 >= 0)
-            {
-                if ((battleField[row, column - 1] != "X") && (battleField[row, column - 1] != "-"))
-                {
-                    killedNumbers++; 
-                    battleField[row, column - 1] = "X";
-                }
-            }
-
-            if (column + 1 <= n - 1)
-            {
-                if ((battleField[row, column + 1] != "X") && (battleField[row, column + 1] != "-"))
-                {
-                    killedNumbers++; 
-                    battleField[row, column + 1] = "X";
-                }
-            }
-
-            if (row + 1 <= n - 1)
-            {
-                if ((battleField[row + 1, column] != "X") && (battleField[row + 1, column] != "-"))
-                {
-                    killedNumbers++; 
-                    battleField[row + 1, column] = "X";
-                }
-            }
-        }
-
-        public void BombThree(int row, int column)
-        {
-            BombTwo(row, column);
-
-            if (row - 2 >= 0)
-            {
-                if ((battleField[row - 2, column] != "X") && (battleField[row - 2, column] != "-"))
-                {
-                    killedNumbers++; 
-                    battleField[row - 2, column] = "X";
-                }
-            }
-
-            if (column - 2 >= 0)
-            {
-                if ((battleField[row, column - 2] != "X") && (battleField[row, column - 2] != "-"))
-                {
-                    killedNumbers++; 
-                    battleField[row, column - 2] = "X";
-                }
-            }
-
-            if (column + 2 <= n - 1)
-            {
-                if ((battleField[row, column + 2] != "X") && (battleField[row, column + 2] != "-"))
-                {
-                    killedNumbers++; 
-                    battleField[row, column + 2] = "X";
-                }
-            }
-
-            if (row + 2 <= n - 1)
-            {
-                if ((battleField[row + 2, column] != "X") && (battleField[row + 2, column] != "-"))
-                {
-                    killedNumbers++; 
-                    battleField[row + 2, column] = "X";
-                }
-            }
-
-        }
-
-        public void BombFour(int row, int column)
-        {
-            BombThree(row, column);
-
-            if ((row - 1 >= 0) && (column - 2 >= 0))
-            {
-                if ((battleField[row - 1, column - 2] != "X") && (battleField[row - 1, column - 2] != "-"))
-                {
-                    killedNumbers++; 
-                    battleField[row - 1, column - 2] = "X";
-                }
-            }
-
-            if ((row + 1 <= n - 1) && (column - 2 >= 0))
-            {
-                if ((battleField[row + 1, column - 2] != "X") && (battleField[row + 1, column - 2] != "-"))
-                {
-                    killedNumbers++; 
-                    battleField[row + 1, column - 2] = "X";
-                }
-            }
-
-            if ((row - 2 >= 0) && (column - 1 >= 0))
-            {
-                if ((battleField[row - 2, column - 1] != "X") && (battleField[row - 2, column - 1] != "-"))
-                {
-                    killedNumbers++; 
-                    battleField[row - 2, column - 1] = "X";
-                }
-            };
-
-            if ((row + 2 <= n - 1) && (column - 1 >= 0))
-            {
-                if ((battleField[row + 2, column - 1] != "X") && (battleField[row + 2, column - 1] != "-"))
-                {
-                    killedNumbers++; 
-                    battleField[row + 2, column - 1] = "X";
-                }
-            }
-
-            if ((row - 1 >= 0) && (column + 2 <= n - 1))
-            {
-                if ((battleField[row - 1, column + 2] != "X") && (battleField[row - 1, column + 2] != "-"))
-                {
-                    killedNumbers++; 
-                    battleField[row - 1, column + 2] = "X";
-                }
-            }
-
-            if ((row + 1 <= n - 1) && (column + 2 <= n - 1))
-            {
-                if ((battleField[row + 1, column + 2] != "X") && (battleField[row + 1, column + 2] != "-"))
-                {
-                    killedNumbers++; 
-                    battleField[row + 1, column + 2] = "X";
-                }
-            }
-
-            if ((row - 2 >= 0) && (column + 1 <= n - 1))
-            {
-                if ((battleField[row - 2, column + 1] != "X") && (battleField[row - 2, column + 1] != "-"))
-                {
-                    killedNumbers++; 
-                    battleField[row - 2, column + 1] = "X";
-                }
-            }
-
-            if ((row + 2 <= n - 1) && (column + 1 <= n - 1))
-            {
-                if ((battleField[row + 2, column + 1] != "X") && (battleField[row + 2, column + 1] != "-"))
-                {
-                    killedNumbers++; 
-                    battleField[row + 2, column + 1] = "X";
-                }
-            }
-        }
-
-        public void BombFive(int row, int column)
-        {
-            BombFour(row, column);
-
-            if ((row - 2 >= 0) && (column - 2 >= 0))
-            {
-                if ((battleField[row - 2, column - 2] != "X") && (battleField[row - 2, column - 2] != "-"))
-                {
-                    killedNumbers++; 
-                    battleField[row - 2, column - 2] = "X";
-                }
-            }
-
-            if ((row + 2 <= n - 1) && (column - 2 >= 0))
-            {
-                if ((battleField[row + 2, column - 2] != "X") && (battleField[row + 2, column - 2] != "-"))
-                {
-                    killedNumbers++; 
-                    battleField[row + 2, column - 2] = "X";
-                }
-            }
-
-            if ((row - 2 >= 0) && (column + 2 <= n - 1))
-            {
-                if ((battleField[row - 2, column + 2] != "X") && (battleField[row - 2, column + 2] != "-"))
-                {
-                    killedNumbers++; 
-                    battleField[row - 2, column + 2] = "X";
-                }
-            }
-
-            if ((row + 2 <= n - 1) && (column + 2 <= n - 1))
-            {
-                if ((battleField[row + 2, column + 2] != "X") && (battleField[row + 2, column + 2] != "-"))
-                {
-                    killedNumbers++; 
-                    battleField[row + 2, column + 2] = "X";
-                }
-            }
-        }
-
+        
         public void InvalidMove()
         {
             Console.WriteLine("Invalid Move!");
@@ -414,7 +195,7 @@ namespace BattleField
             }
         }
 
-        int izgyrmqniBombi = 0;
+        public int izgyrmqniBombi = 0;
 
         public void MineCell(int row, int column)
         {
@@ -428,17 +209,10 @@ namespace BattleField
             {
                 cellNumber = Convert.ToInt32(battleField[row, column]);
             }
-
-            switch (cellNumber)
-            {
-                case 1: { BombOne(row, column); ViewTable(); izgyrmqniBombi++; break; };
-                case 2: { BombTwo(row, column); ViewTable(); izgyrmqniBombi++; break; };
-                case 3: { BombThree(row, column); ViewTable(); izgyrmqniBombi++; break; };
-                case 4: { BombFour(row, column); ViewTable(); izgyrmqniBombi++; break; };
-                case 5: { BombFive(row, column); ViewTable(); izgyrmqniBombi++; break; };
-
-                default: { InvalidMove(); break; };
+            if (cellNumber > 5 || cellNumber < 0) {
+                InvalidMove(); 
             }
+            Bomb(row, column, cellNumber); ViewTable(); izgyrmqniBombi++;
         }
 
         public bool Over()
