@@ -1,0 +1,4 @@
+*.suo
+*.csproj
+BattleField/StyleCop.Cache
+BattleField/Tests/Properties/AssemblyInfo.cs
