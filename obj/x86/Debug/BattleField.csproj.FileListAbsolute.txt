@@ -8,3 +8,5 @@ C:\Users\John\Documents\GitHub\High Quality Code - Cylenne\Battle-Field-6\obj\x8
 C:\Users\John\Documents\GitHub\High Quality Code - Cylenne\Battle-Field-6\obj\x86\Debug\BattleField.csprojResolveAssemblyReference.cache
 C:\Users\John\Documents\GitHub\High Quality Code - Cylenne\Battle-Field-6\bin\Debug\BattleField.exe
 C:\Users\John\Documents\GitHub\High Quality Code - Cylenne\Battle-Field-6\bin\Debug\BattleField.pdb
+C:\Users\John\Documents\CYLLENE\obj\x86\Debug\BattleField.exe
+C:\Users\John\Documents\CYLLENE\obj\x86\Debug\BattleField.pdb
