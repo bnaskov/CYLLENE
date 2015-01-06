@@ -19,7 +19,7 @@ namespace BattleField
         {
             int x = coords[0];
             int y = coords[1];
-            if((x<0||x>9) || (y<0||y>9))
+            if ((x < 0 || x > 8) || (y < 0 || y > 8))
             {
                 throw new ArgumentException("Input must be between (0..8).");
             }

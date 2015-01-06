@@ -6,7 +6,6 @@ namespace BattleField
     public class Helper
     {
         
-        //private static Validator val = new Validator();
         
         public static int ReadBoardSize()
         {
@@ -42,37 +41,37 @@ namespace BattleField
             return n;
         }
 
-        public int[] ReadUserInput(string coordinateString)
+        public static int[] ReadUserInput()
         {
-            string inputRowAndColumn = Console.ReadLine();
-            string[] coordinates = inputRowAndColumn.Split(' ');
+            string inputRowAndColumn;
             int[] coords = new int[2];
 
+            //(kyamaliev) TODO: should do it without loop here, too difficult to rethrow exceptions
             do
             {
                 try
                 {
+                    Console.Write("Please enter cell coordinates (x y): ");
+                    inputRowAndColumn = Console.ReadLine();
+                    string[] coordinates = inputRowAndColumn.Split(' ');
                     coords[0] = int.Parse(coordinates[0]);
                     coords[1] = int.Parse(coordinates[1]);
                     Validator.ValidateCoordinates(coords);
 
                 }
-                catch (ArgumentNullException)
+                catch (ArgumentException)
                 {
                     Console.WriteLine("Incorrect input. Please try again.");
-                    
                     continue;
                 }
                 catch (FormatException)
                 {
                     Console.WriteLine("Incorrect input. Please try again.");
-
                     continue;
                 }
                 catch (OverflowException)
                 {
                     Console.WriteLine("Incorrect input. Please try again.");
-
                     continue;
                 }
                 break;
@@ -81,6 +80,14 @@ namespace BattleField
 
             return coords;
         }
+
+        public static int RandomNumber(int min, int max)
+        {
+            Random random = new Random();
+            return random.Next(min, max);
+        }
+
+        
 
         //public void Play()
         //{

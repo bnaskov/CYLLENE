@@ -2,40 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using BattleField.classes;
+using System.Threading.Tasks;
 
-
-namespace BattleField
+namespace BattleField.classes
 {
-    public class BattleFieldGame
+    public class Engine
     {
-        static void Main()
-        {
-            BattleFieldGame bf = new BattleFieldGame();
-            bf.GameSession();
-        }
-
-        public void GameSession()
-        {
-            CreateBattleField();
-            FillInTheFields();
-            DrawTable();
-
-            while (!(Over()))
-            {
-                int[] coordinates = Helper.ReadUserInput();
-                DetonateMine(coordinates[0], coordinates[1]);
-            }
-
-            Console.WriteLine("Game Over. Detonated Mines {0}", detonatedMines);
-        }
-
-        public static Boolean isValidFieldSize(int inputNumber)
-        {
-            return ((inputNumber >= 1) && (inputNumber <= 10));
-        }
-
-
         public string[,] battleField;
         public int n;
 
