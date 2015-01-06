@@ -8,7 +8,7 @@
     <ProjectGuid>{85255C43-CCD7-4E3B-8C0B-79AC0D498B85}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BattleFieldNamespace</RootNamespace>
+    <RootNamespace>BattleField</RootNamespace>
     <AssemblyName>BattleField</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
@@ -43,7 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BattleField.cs" />
+    <Compile Include="Game.cs" />
+    <Compile Include="classes\Helper.cs" />
+    <Compile Include="classes\Validator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />

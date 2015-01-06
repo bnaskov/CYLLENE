@@ -6,11 +6,15 @@ using System.Text;
 
 namespace BattleField
 {
-    public class BattleField
+    public class BattleFieldGame
     {
         static void Main()
         {
-            BattleField bf = new BattleField();
+
+    
+
+
+            BattleFieldGame bf = new BattleFieldGame();
 
             bf.GameSession();
         }
@@ -23,38 +27,8 @@ namespace BattleField
 
             while (!(Over()))
             {
-                Console.Write("Please Enter Coordinates : ");
-
-                string inputRowAndColumn = Console.ReadLine();
-                string[] rowAndColumnSplit = inputRowAndColumn.Split(' ');
-                int row;
-                int column;
-
-                if ((rowAndColumnSplit.Length) <= 1)
-                {
-                    row = -1;
-                    column = -1;
-                }
-                else
-                {
-                    if (!(int.TryParse(rowAndColumnSplit[0], out row)))
-                    {
-                        row = -1;
-                    }
-                    if (!(int.TryParse(rowAndColumnSplit[1], out column)))
-                    {
-                        column = -1;
-                    }
-                }
-
-                if ((OutOfAreaCoordinates(row, column)))
-                {
-                    Console.WriteLine("This Move Is Out Of Area.");
-                }
-                else
-                {
-                    MineCell(row, column);
-                }
+                //Play
+                
             }
 
             Console.WriteLine("Game Over. Detonated Mines {0}", detonatedMines);
@@ -66,29 +40,29 @@ namespace BattleField
             return ((inputNumber >= 1) && (inputNumber <= 10));
         }
 
-        public int ReadCellsNumber()
-        {
-            int n;
-            do
-            {
-                Console.Write("Please Enter Valid Size Of The Field. n=");
+        //public int ReadCellsNumber()
+        //{
+        //    int n;
+        //    do
+        //    {
+        //        Console.Write("Please Enter Valid Size Of The Field. n=");
 
-                if (!(Int32.TryParse(Console.ReadLine(), out n)))
-                {
-                    n = -1;
-                }
-            }
-            while (!(isValidFieldSize(n)));
+        //        if (!(Int32.TryParse(Console.ReadLine(), out n)))
+        //        {
+        //            n = -1;
+        //        }
+        //    }
+        //    while (!(isValidFieldSize(n)));
 
-            return n;
-        }
+        //    return n;
+        //}
 
         public string[,] battleField;
         public int n;
 
         public void CreateBattleField()
         {
-            n = ReadCellsNumber();
+            n=Helper.ReadBoardSize();
             battleField = new string[n, n];
             for (int row = 0; row < n; row++)
             {
