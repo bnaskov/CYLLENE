@@ -2,3 +2,6 @@
 *.csproj
 BattleField/StyleCop.Cache
 BattleField/Tests/Properties/AssemblyInfo.cs
+BattleField/bin/Debug/BattleField.vshost.exe
+BattleField/bin/Debug/BattleField.vshost.exe.manifest
+BattleField/obj/x86/Debug/DesignTimeResolveAssemblyReferencesInput.cache
