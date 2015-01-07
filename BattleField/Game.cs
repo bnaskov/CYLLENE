@@ -19,11 +19,11 @@ namespace BattleField
 
             while (!(e.GameOver()))
             {
-                int[] coordinates = e.ReadUserInput();
+                int[] coordinates = Engine.ReadUserInput();
                 e.DetonateMine(coordinates[0], coordinates[1]);
             }
 
-            Console.WriteLine("Game GameOver. Detonated Mines {0}", this.detonatedMines);
+            Console.WriteLine("Game Over. Detonated Mines {0}", e.DestroyedMines);
         }
     }
 }
