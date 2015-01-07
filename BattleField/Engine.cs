@@ -36,7 +36,7 @@ namespace BattleField
 
                 if (this.BattleField[row, column] == "-")
                 {
-                    this.BattleField[row, column] = Convert.ToString(RandomNumber(1, 5));
+                    this.BattleField[row, column] = Convert.ToString(RandomNumber(1, 6));
                     this.InitialMineCount++;
 
                     //if (this.InitialMineCount >= 0.15 * this.N * this.N) //TODO(kyamaliev): Randomize the number of mines!
@@ -121,34 +121,166 @@ namespace BattleField
             return true;
         }
 
-        private void Bomb(int row, int column, int range) //(kyamaliev)why is it called range?
+        private bool IsNumber(int row, int column)
         {
-            int number;
-            if (!int.TryParse(this.BattleField[row, column], out number))
+            if ((this.BattleField[row, column] != "X") && (this.BattleField[row, column] != "-"))
             {
-                InvalidMove();
+                return false;
             }
-            else
-            {
-                this.BattleField[row, column] = "X";
-                this.DestroyedMines++;
+            return true;
+        }
 
-                for (int i = row - range; i < row + range; i++)
-                {
-                    for (int j = column - range; j < column + range; j++)
+        private void Bomb(int row, int column, int number)
+        {
+
+            this.BattleField[row, column] = "X";
+            this.DestroyedMines++;
+
+            switch (number)
+            {
+                case 1:
+                    if (this.OutOfAreaCoordinates(row - 1, column - 1) && this.IsNumber(row - 1, column - 1))
                     {
-                        if (!this.OutOfAreaCoordinates(i, j))
-                        {
-                            if ((this.BattleField[i, j] != "X") && (this.BattleField[i, j] != "-"))
-                            {
-                                this.DestroyedMines++;
-                                this.BattleField[i, j] = "X";
-                            }
-                        }
+                        this.DestroyedMines++;
+                        this.BattleField[row - 1, column - 1] = "X";
                     }
-                }
-            }
 
+                    if (this.OutOfAreaCoordinates(row + 1, column - 1) && this.IsNumber(row + 1, column - 1))
+                    {
+                        this.DestroyedMines++; this.BattleField[row + 1, column - 1] = "X";
+                    }
+
+                    if (this.OutOfAreaCoordinates(row - 1, column + 1) && this.IsNumber(row - 1, column + 1))
+                    {
+                        this.DestroyedMines++; this.BattleField[row - 1, column + 1] = "X";
+                    }
+
+                    if (this.OutOfAreaCoordinates(row + 1, column + 1) && this.IsNumber(row + 1, column + 1))
+                    {
+                        this.DestroyedMines++; this.BattleField[row + 1, column + 1] = "X";
+                    }
+
+                    break;
+
+                case 2:
+                    this.Bomb(row, column, 1);
+
+                    if (this.OutOfAreaCoordinates(row - 1, column) && this.IsNumber(row - 1, column))
+                    {
+                        this.DestroyedMines++; this.BattleField[row - 1, column] = "X";
+                    }
+
+                    if (this.OutOfAreaCoordinates(row, column - 1) && this.IsNumber(row, column - 1))
+                    {
+                        this.DestroyedMines++; this.BattleField[row, column - 1] = "X";
+                    }
+
+                    if (this.OutOfAreaCoordinates(row, column + 1) && this.IsNumber(row, column + 1))
+                    {
+                        this.DestroyedMines++; this.BattleField[row, column + 1] = "X";
+                    }
+
+                    if (this.OutOfAreaCoordinates(row + 1, column) && this.IsNumber(row + 1, column))
+                    {
+                        this.DestroyedMines++; this.BattleField[row + 1, column] = "X";
+                    }
+
+                    break;
+                case 3:
+                    this.Bomb(row, column, 2);
+
+                    if (this.OutOfAreaCoordinates(row - 2, column) && this.IsNumber(row - 2, column))
+                    {
+                        this.DestroyedMines++; this.BattleField[row - 2, column] = "X";
+                    };
+
+                    if (this.OutOfAreaCoordinates(row, column - 2) && this.IsNumber(row, column - 2))
+                    {
+                        this.DestroyedMines++; this.BattleField[row, column - 2] = "X";
+                    };
+
+                    if (this.OutOfAreaCoordinates(row, column + 2) && this.IsNumber(row, column + 2))
+                    {
+                        this.DestroyedMines++; this.BattleField[row, column + 2] = "X";
+                    };
+
+                    if (this.OutOfAreaCoordinates(row + 2, column) && this.IsNumber(row + 2, column))
+                    {
+                        this.DestroyedMines++; this.BattleField[row + 2, column] = "X";
+                    };
+
+                    break;
+                case 4:
+                    Bomb(row, column, 3);
+
+                    if (this.OutOfAreaCoordinates(row - 1, column - 2) && this.IsNumber(row - 1, column - 2))
+                    {
+                        this.DestroyedMines++; this.BattleField[row - 1, column - 2] = "X";
+                    };
+
+                    if (this.OutOfAreaCoordinates(row + 1, column - 2) && this.IsNumber(row + 1, column - 2))
+                    {
+                        this.DestroyedMines++; this.BattleField[row + 1, column - 2] = "X";
+                    };
+
+                    if (this.OutOfAreaCoordinates(row - 2, column - 1) && this.IsNumber(row - 2, column - 1))
+                    {
+                        this.DestroyedMines++; this.BattleField[row - 2, column - 1] = "X";
+                    };
+
+                    if (this.OutOfAreaCoordinates(row + 2, column - 1) && this.IsNumber(row + 2, column - 1))
+                    {
+                        this.DestroyedMines++; this.BattleField[row + 2, column - 1] = "X";
+                    };
+
+                    if (this.OutOfAreaCoordinates(row - 1, column + 2) && this.IsNumber(row - 1, column + 2))
+                    {
+                        this.DestroyedMines++; this.BattleField[row - 1, column + 2] = "X";
+                    };
+
+                    if (this.OutOfAreaCoordinates(row + 1, column + 2) && this.IsNumber(row + 1, column + 2))
+                    {
+                        this.DestroyedMines++; this.BattleField[row + 1, column + 2] = "X";
+                    };
+
+                    if (this.OutOfAreaCoordinates(row - 2, column + 1) && this.IsNumber(row - 2, column + 1))
+                    {
+                        this.DestroyedMines++; this.BattleField[row - 2, column + 1] = "X";
+                    };
+
+                    if (this.OutOfAreaCoordinates(row + 2, column + 1) && this.IsNumber(row + 2, column + 1))
+                    {
+                        this.DestroyedMines++; this.BattleField[row + 2, column + 1] = "X";
+                    };
+                    break;
+
+                case 5: Bomb(row, column, 4);
+
+                    if (this.OutOfAreaCoordinates(row - 2, column - 2) && this.IsNumber(row - 2, column - 2))
+                    {
+                        this.DestroyedMines++; this.BattleField[row - 2, column - 2] = "X";
+                    };
+
+                    if (this.OutOfAreaCoordinates(row + 2, column - 2) && this.IsNumber(row + 2, column - 2))
+                    {
+                        this.DestroyedMines++; this.BattleField[row + 2, column - 2] = "X";
+                    };
+
+                    if (this.OutOfAreaCoordinates(row + 2, column + 2) && this.IsNumber(row + 2, column + 2))
+                    {
+                        this.DestroyedMines++; this.BattleField[row + 2, column + 2] = "X";
+                    };
+
+                    if (this.OutOfAreaCoordinates(row - 2, column + 2) && this.IsNumber(row - 2, column + 2))
+                    {
+                        this.DestroyedMines++; this.BattleField[row - 2, column + 2] = "X";
+                    };
+
+                    break;
+                default:
+                    InvalidMove();
+                    break;
+            }
         }
 
         private int ReadBoardSize()
